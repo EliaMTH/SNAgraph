@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grafo dei concetti</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="cy"></div>
+
+<select id="graph">
+  <option value="ALL">ALL</option>
+  <option value="GG-EU">GG-EU</option>
+  <option value="GG-CH">GG-CH</option>
+</select>
+
+<aside id="panel" hidden>
+  <h1 id="p-label"></h1>
+  <dl>
+    <dt>Indice</dt>            <dd id="p-id"></dd>
+    <dt>Grafo</dt>             <dd id="p-graph"></dd>
+    <dt>Peso del nodo</dt>     <dd id="p-weight"></dd>
+    <dt>Connessioni</dt>       <dd id="p-degree"></dd>
+    <dt>Somma pesi archi</dt>  <dd id="p-strength"></dd>
+  </dl>
+</aside>
+
+<script src="https://cdn.jsdelivr.net/npm/cytoscape@3.30.2/dist/cytoscape.min.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
