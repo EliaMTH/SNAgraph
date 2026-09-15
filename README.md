@@ -9,6 +9,8 @@ e' il degree, lo spessore degli archi il peso della co-occorrenza.
 
 Le posizioni sono precalcolate e identiche nei tre grafi.
 
+[Pubblicato su GitHub Pages.](https://eliamth.github.io/SNAgraph/)
+
 ## File
 
 | | |
@@ -26,7 +28,3 @@ python3 -m venv .venv
 .venv/bin/pip install openpyxl networkx numpy
 .venv/bin/python build_data.py
 ```
-
-## Pubblicare
-
-Settings -> Pages -> branch `main`, cartella root. `index.html` e' gia' alla radice.
