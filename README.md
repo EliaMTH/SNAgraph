@@ -1,7 +1,7 @@
 # SNAgraph - Grafo dei concetti interattivo
 
 Visualizzazione interattiva di tre matrici di co-occorrenza sugli stessi 48 concetti
-(`ALL`, `GG-EU`, `GG-CH`), con Cytoscape.js. Pagina statica, nessun build step. La creazione di `data.js` è fatta con uno script python python.
+(`ALL`, `GG-EU`, `GG-CH`), con Cytoscape.js. Pagina statica, nessun build step. La creazione di `data.js` è fatta con uno script python.
 
 Click su un nodo per evidenziarne il vicinato e aprire il pannello; click sullo sfondo
 per chiudere. Rotella per lo zoom, trascinamento per spostarsi. La dimensione dei nodi
