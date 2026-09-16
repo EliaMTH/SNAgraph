@@ -1,11 +1,11 @@
-"""Generate data.js from 'Matrici SNA.xlsx'. Only rerun when the data changes."""
+"""Generate data.js from a '.xlsx' file. Only rerun when the data changes."""
 
 import json
 import math
 import networkx as nx
 from openpyxl import load_workbook
 
-XLSX = "Matrici SNA.xlsx"
+XLSX = "SNA_matrix.xlsx"
 GRAPHS = ["ALL", "GG-EU", "GG-CH"]
 N = 48
 SPREAD = 900  # half-width in px of the box the nodes are laid out in

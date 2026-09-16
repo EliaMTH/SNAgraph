@@ -137,5 +137,13 @@ cy.on("tap", (e) => {
 // Native <dialog>: Esc and the Close button dismiss it, no code needed.
 $("guide-open").onclick = () => $("guide").showModal();
 
+// Click outside to close. The backdrop belongs to the dialog element itself, so compare
+// against its box: a click on its padding is still inside and must not close it.
+$("guide").onclick = (e) => {
+  const r = e.currentTarget.getBoundingClientRect();
+  const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+  if (!inside) e.currentTarget.close();
+};
+
 $("graph").onchange = (e) => show(e.target.value);
 show($("graph").value);

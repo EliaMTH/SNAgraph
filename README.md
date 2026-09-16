@@ -18,7 +18,7 @@ Node positions are precomputed and identical across the three graphs.
 |---|---|
 | `index.html`, `style.css`, `app.js` | the page |
 | `data.js` | **generated** by `build_data.py`, do not edit by hand |
-| `build_data.py` | regenerates `data.js` from `Matrici SNA.xlsx` |
+| `build_data.py` | regenerates `data.js` from `SNA_matrix.xlsx` |
 
 ## Regenerating the data
 
