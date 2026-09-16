@@ -1,29 +1,43 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Grafo dei concetti</title>
+<title>SNAgraph</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div id="cy"></div>
 
-<select id="graph">
-  <option value="ALL">ALL</option>
-  <option value="GG-EU">GG-EU</option>
-  <option value="GG-CH">GG-CH</option>
-</select>
+<div id="controls">
+  <select id="graph">
+    <option value="ALL">ALL</option>
+    <option value="GG-EU">GG-EU</option>
+    <option value="GG-CH">GG-CH</option>
+  </select>
+  <button id="guide-open">Guide</button>
+</div>
+
+<dialog id="guide">
+  <h2>Commands</h2>
+  <ul>
+    <li>Click a node to see its details.</li>
+    <li>Scroll to zoom, drag to pan.</li>
+    <li>Click the background to deselect.</li>
+  </ul>
+  Check the paper! <a href="https://github.com/EliaMTH/SNAgraph" target="_blank" rel="noopener">github.com/EliaMTH/SNAgraph</a>
+  <form method="dialog"><button>Close</button></form>
+</dialog>
 
 <aside id="panel" hidden>
   <h1 id="p-label"></h1>
   <dl>
-    <dt>Indice</dt>            <dd id="p-id"></dd>
-    <dt>Grafo</dt>             <dd id="p-graph"></dd>
-    <dt>Peso del nodo</dt>     <dd id="p-weight"></dd>
-    <dt>Connessioni</dt>       <dd id="p-degree"></dd>
-    <dt>Somma pesi archi</dt>  <dd id="p-strength"></dd>
+    <dt>Index</dt>            <dd id="p-id"></dd>
+    <dt>Set</dt>              <dd id="p-graph"></dd>
+    <dt>Node weight</dt>      <dd id="p-weight"></dd>
+    <dt>Centrality degree</dt><dd id="p-degree"></dd>
+    <dt>Weighted degree</dt>  <dd id="p-strength"></dd>
   </dl>
 </aside>
 

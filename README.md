@@ -1,27 +1,28 @@
-# SNAgraph - Grafo dei concetti interattivo
+# SNAgraph - Interactive concept graph
 
-Visualizzazione interattiva di tre matrici di co-occorrenza sugli stessi 48 concetti
-(`ALL`, `GG-EU`, `GG-CH`), con Cytoscape.js. Pagina statica, nessun build step. La creazione di `data.js` è fatta con uno script python.
+Interactive visualisation of three co-occurrence matrices over the same 48 concepts
+(`ALL`, `GG-EU`, `GG-CH`), built with Cytoscape.js. Static page, no build step. `data.js`
+is produced by a Python script.
 
-Click su un nodo per evidenziarne il vicinato e aprire il pannello; click sullo sfondo
-per chiudere. Rotella per lo zoom, trascinamento per spostarsi. La dimensione dei nodi
-e' il degree, lo spessore degli archi il peso della co-occorrenza.
+Click a node to highlight its neighbourhood and open the side panel; click the background
+to close it. Scroll to zoom, drag to pan. Node size is the degree; on the selected node's
+edges, thickness is the co-occurrence weight.
 
-Le posizioni sono precalcolate e identiche nei tre grafi.
+Node positions are precomputed and identical across the three graphs.
 
-[Pubblicato su GitHub Pages.](https://eliamth.github.io/SNAgraph/)
+[Published on GitHub Pages.](https://eliamth.github.io/SNAgraph/)
 
-## File
+## Files
 
 | | |
 |---|---|
-| `index.html`, `style.css`, `app.js` | la pagina |
-| `data.js` | **generato** da `build_data.py`, non modificare a mano |
-| `build_data.py` | rigenera `data.js` da `Matrici SNA.xlsx` |
+| `index.html`, `style.css`, `app.js` | the page |
+| `data.js` | **generated** by `build_data.py`, do not edit by hand |
+| `build_data.py` | regenerates `data.js` from `Matrici SNA.xlsx` |
 
-## Rigenerare i dati
+## Regenerating the data
 
-Serve solo se cambia l'xlsx.
+Only needed when the xlsx changes.
 
 ```sh
 python3 -m venv .venv
