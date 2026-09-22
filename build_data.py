@@ -14,11 +14,13 @@ CORE = 0.6  # <1 opens up the crowded centre
 
 wb = load_workbook(XLSX, read_only=True, data_only=True)
 
-# Topics sheet: index -> concept name.
+# Topics sheet: index -> concept name. Row 1 is a header, so the topics start at row 2,
+# same as in the matrix sheets. The assert turns a layout change into a clear message.
 labels = {
     int(i): str(name)
-    for i, name in wb["Topics"].iter_rows(max_row=N, max_col=2, values_only=True)
+    for i, name in wb["Topics"].iter_rows(min_row=2, max_row=N + 1, max_col=2, values_only=True)
 }
+assert len(labels) == N, f"expected {N} topics in the Topics sheet, found {len(labels)}"
 
 
 def read_matrix(sheet):
@@ -27,13 +29,25 @@ def read_matrix(sheet):
     return [[int(v or 0) for v in row] for row in rows]
 
 
-# The matrices are symmetric: the diagonal is the node weight, the rest the edge weight,
-# so the upper triangle is enough for the edges.
+def read_weights(sheet):
+    """Node weights, taken from the 'pesi' row below the matrix.
+
+    That row is the authority for the weights and deliberately overrides the matrix
+    diagonal, which is what this script read before and which disagrees on a handful of
+    concepts. Do not go back to the diagonal. For details: roberto.malvezzi@cnr.it
+    """
+    for row in sheet.iter_rows(min_row=N + 2, max_col=N + 1, values_only=True):
+        if row[0] and str(row[0]).strip().lower() == "pesi":
+            return {str(i + 1): int(row[i + 1] or 0) for i in range(N)}
+    raise SystemExit(f"no 'pesi' row found in sheet {sheet.title}")
+
+
+# The matrices are symmetric, so the upper triangle is enough for the edges.
 graphs = {}
 for name in GRAPHS:
     m = read_matrix(wb[name])
     graphs[name] = {
-        "weights": {str(i + 1): m[i][i] for i in range(N)},
+        "weights": read_weights(wb[name]),
         "edges": [[i + 1, j + 1, m[i][j]] for i in range(N) for j in range(i + 1, N) if m[i][j]],
     }
 

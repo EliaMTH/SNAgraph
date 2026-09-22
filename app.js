@@ -112,27 +112,37 @@ function show(name) {
 function reset() {
   cy.elements().removeClass("faded current on");
   $("panel").hidden = true;
+  $("topic").value = "";
 }
 
-cy.on("tap", "node", (e) => {
-  const n = e.target;
+// Both the graph click and the topic dropdown go through here, so they behave alike.
+function select(n) {
   cy.elements().addClass("faded").removeClass("current on"); // clear the previous highlight
   n.closedNeighborhood().removeClass("faded"); // node + neighbours + incident edges
   n.addClass("current");
   n.connectedEdges().addClass("on");
 
   $("p-label").textContent = n.data("label");
-  $("p-id").textContent = n.id();
+  // $("p-id").textContent = n.id();
   $("p-graph").textContent = $("graph").value;
   $("p-weight").textContent = n.data("weight");
   $("p-degree").textContent = n.degree();
   $("p-strength").textContent = n.connectedEdges().reduce((sum, e) => sum + e.data("weight"), 0);
   $("panel").hidden = false;
-});
+  $("topic").value = n.id(); // keep the dropdown showing what is selected
+}
+
+cy.on("tap", "node", (e) => select(e.target));
 
 cy.on("tap", (e) => {
   if (e.target === cy) reset(); // click on the background
 });
+
+// Topic list built from the data, so it cannot drift out of sync with it. Alphabetical,
+// to be scanned by name; the value stays the node id. Copied, so DATA is left alone.
+for (const n of [...DATA.nodes].sort((a, b) => a.label.localeCompare(b.label)))
+  $("topic").add(new Option(n.label, n.id));
+$("topic").onchange = (e) => (e.target.value ? select(cy.$("#" + e.target.value)) : reset());
 
 // Native <dialog>: Esc and the Close button dismiss it, no code needed.
 $("guide-open").onclick = () => $("guide").showModal();

@@ -11,18 +11,24 @@
 <div id="cy"></div>
 
 <div id="controls">
-  <select id="graph">
-    <option value="ALL">ALL</option>
-    <option value="GG-EU">GG-EU</option>
-    <option value="GG-CH">GG-CH</option>
-  </select>
+  <label>Semantic network
+    <select id="graph">
+      <option value="ALL">ALL</option>
+      <option value="GG-EU">GG-EU</option>
+      <option value="GG-CH">GG-CH</option>
+    </select>
+  </label>
+  <label>Topic
+    <select id="topic"><option value="">none</option></select>
+  </label>
   <button id="guide-open">Guide</button>
 </div>
 
 <dialog id="guide">
   <h2>Commands</h2>
   <ul>
-    <li>Click a node to see its details.</li>
+    <li>Click a node or select it from the dropdown menu to see its details.</li>
+    <li>Change the semantic network using the dropdown menu.</li>
     <li>Scroll to zoom, drag to pan.</li>
     <li>Click the background to deselect.</li>
   </ul>
@@ -33,11 +39,11 @@
 <aside id="panel" hidden>
   <h1 id="p-label"></h1>
   <dl>
-    <dt>Index</dt>            <dd id="p-id"></dd>
-    <dt>Set</dt>              <dd id="p-graph"></dd>
+    <!-- <dt>Index</dt>            <dd id="p-id"></dd> -->
+    <dt>Semantic network</dt>              <dd id="p-graph"></dd>
     <dt>Node weight</dt>      <dd id="p-weight"></dd>
     <dt>Centrality degree</dt><dd id="p-degree"></dd>
-    <dt>Weighted degree</dt>  <dd id="p-strength"></dd>
+    <dt>Number of direct links</dt>  <dd id="p-strength"></dd>
   </dl>
 </aside>
 

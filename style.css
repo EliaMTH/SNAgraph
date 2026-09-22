@@ -17,10 +17,12 @@ body {
   top: 16px;
   left: 16px;
   display: flex;
+  align-items: center;
   gap: 8px;
 }
 
-#controls select,
+/* Label and dropdown share one white box, so the text stays readable over the graph. */
+#controls label,
 #controls button,
 #guide button {
   padding: 6px 10px;
@@ -30,8 +32,27 @@ body {
   border-radius: 4px;
 }
 
+#controls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #777;
+  border-color: #e5e5e5; /* the outer box recedes: the dropdown is what you click */
+}
+
+#controls select {
+  font: inherit;
+  color: #222;
+  padding: 4px 8px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
 #controls button,
 #guide button { cursor: pointer; }
+
+#topic { max-width: 240px; } /* the longest topic would stretch the bar */
 
 #guide {
   max-width: 320px;
@@ -47,6 +68,8 @@ body {
 #guide ul { margin: 0 0 16px; padding-left: 18px; }
 
 #guide a { display: block; margin-bottom: 16px; color: #2f6fb0; }
+
+#guide form { text-align: center; }
 
 #panel {
   position: fixed;

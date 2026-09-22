@@ -4,9 +4,7 @@ Interactive visualisation of three co-occurrence matrices over the same 48 conce
 (`ALL`, `GG-EU`, `GG-CH`), built with Cytoscape.js. Static page, no build step. `data.js`
 is produced by a Python script.
 
-Click a node to highlight its neighbourhood and open the side panel; click the background
-to close it. Scroll to zoom, drag to pan. Node size is the degree; on the selected node's
-edges, thickness is the co-occurrence weight.
+Click a node to highlight its neighbourhood and read its details; click the background to close it. Scroll to zoom, drag to pan. Node size is the degree; on the selected node's edges, thickness is the co-occurrence weight.
 
 Node positions are precomputed and identical across the three graphs.
 
