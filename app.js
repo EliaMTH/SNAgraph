@@ -26,6 +26,19 @@ const cy = cytoscape({
         // labelSize() sets font size, margin, wrap width and outline
       },
     },
+    // A node with no edges at all: a black cross instead of a dot, so a concept absent
+    // from this network reads as absent. [[degree]] follows the graph on its own.
+    {
+      selector: "node[[degree = 0]]",
+      style: {
+        width: 20, // fixed, and larger than the 12px floor: thin arms read smaller than a dot
+        height: 20,
+        shape: "polygon",
+        "shape-polygon-points":
+          "0.49 -1 1 -0.49 0.51 0 1 0.49 0.49 1 0 0.51 -0.49 1 -1 0.49 -0.51 0 -1 -0.49 -0.49 -1 0 -0.51",
+        "background-color": "#000",
+      },
+    },
     {
       selector: "edge",
       style: { width: 1, "line-color": "#9bb3cc", opacity: 0.5 },
