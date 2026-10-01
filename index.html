@@ -11,17 +11,21 @@
 <div id="cy"></div>
 
 <div id="controls">
-  <label>Semantic network
-    <select id="graph">
-      <option value="ALL">ALL</option>
-      <option value="GG-EU">GG-EU</option>
-      <option value="GG-CH">GG-CH</option>
-    </select>
-  </label>
-  <label>Topic
-    <select id="topic"><option value="">none</option></select>
-  </label>
-  <button id="guide-open">Guide</button>
+  <div id="bar">
+    <label>Select Figure/Semantic network
+      <!-- value: the sheet name in the xlsx (key in data.js); text and caption: what is shown -->
+      <select id="graph">
+        <option value="ALL" data-caption="Second tier semantic network corresponding to the CT2 level of clusterization, as expressed by the whole LB (n = 253 papers)">Figure 8</option>
+        <option value="GG-EU" data-caption="SNA of GG-EU (based on a geographic subset of 81 docs)">Figure 10</option>
+        <option value="GG-CH" data-caption="SNA of GG-CH (based on a geographic subset of 49 docs)">Figure 11</option>
+      </select>
+    </label>
+    <label>Topic
+      <select id="topic"><option value="">none</option></select>
+    </label>
+    <button id="guide-open">Guide</button>
+  </div>
+  <p id="caption"></p>
 </div>
 
 <dialog id="guide">

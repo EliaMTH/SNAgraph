@@ -1,7 +1,8 @@
 # SNAgraph - Interactive concept graph
 
 Interactive visualisation of three co-occurrence matrices over the same 48 concepts
-(`ALL`, `GG-EU`, `GG-CH`), built with Cytoscape.js. Static page, no build step. `data.js`
+(`ALL`, `GG-EU`, `GG-CH`, shown as Figure 8, 10 and 11: names and captions are set in
+`index.html`), built with Cytoscape.js. Static page, no build step. `data.js`
 is produced by a Python script.
 
 Click a node to highlight its neighbourhood and read its details; click the background to close it. Scroll to zoom, drag to pan. Node size is the degree; on the selected node's edges, thickness is the co-occurrence weight.

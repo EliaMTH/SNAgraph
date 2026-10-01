@@ -16,9 +16,25 @@ body {
   position: fixed;
   top: 16px;
   left: 16px;
+}
+
+#bar {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+/* As wide as the bar above, wrapping instead of widening it: width 0 keeps the long
+   caption out of the box's width, min-width 100% then fills what the bar sets. */
+#caption {
+  width: 0;
+  min-width: 100%;
+  margin: 8px 0 0;
+  padding: 6px 10px;
+  color: #444;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
 }
 
 /* Label and dropdown share one white box, so the text stays readable over the graph. */

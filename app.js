@@ -91,10 +91,15 @@ cy.on("zoom", labelSize);
 // above them. Copied, so DATA is left alone; sorted once on load.
 const byY = [...DATA.nodes].sort((a, b) => b.y - a.y);
 
+// The graph menu option: its value is the key in DATA, while the name shown and the
+// caption are set in index.html.
+const graphOption = () => $("graph").selectedOptions[0];
+
 // Draw the chosen graph: all 48 nodes are always there in the same positions, only the
 // edges and the sizes change.
 function show(name) {
   const g = DATA.graphs[name];
+  $("caption").textContent = graphOption().dataset.caption;
   cy.elements().remove();
   cy.add([
     ...byY.map((n) => ({
@@ -137,7 +142,7 @@ function select(n) {
 
   $("p-label").textContent = n.data("label");
   // $("p-id").textContent = n.id();
-  $("p-graph").textContent = $("graph").value;
+  $("p-graph").textContent = graphOption().text;
   $("p-weight").textContent = n.data("weight");
   $("p-degree").textContent = n.degree();
   $("p-strength").textContent = n.connectedEdges().reduce((sum, e) => sum + e.data("weight"), 0);
