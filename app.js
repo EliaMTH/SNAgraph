@@ -86,6 +86,36 @@ function labelSize() {
 
 cy.on("zoom", labelSize);
 
+// Fit the graph into the part of the window left free by the controls, so no node starts
+// hidden under them. The panel is left out: it is always closed when this runs.
+const PAD = 40; // from the window edges
+const GAP = 16; // from the controls, as far as they are from the window edge
+
+function fitView() {
+  const W = cy.width();
+  const H = cy.height();
+  const c = $("controls").getBoundingClientRect(); // measured: the caption changes per graph
+  // The free part is an L around the controls: a box inside it lies either wholly below
+  // them or wholly to their right, so trying these two areas is enough.
+  const areas = [
+    { x1: PAD, y1: c.bottom + GAP, x2: W - PAD, y2: H - PAD },
+    { x1: c.right + GAP, y1: PAD, x2: W - PAD, y2: H - PAD },
+  ];
+  // The box includes the labels, whose size follows the zoom: fit again once they are
+  // resized. Three rounds settle it to a couple of pixels, well within PAD.
+  for (let i = 0; i < 3; i++) {
+    const bb = cy.elements().boundingBox();
+    const zoomIn = (a) => Math.min((a.x2 - a.x1) / bb.w, (a.y2 - a.y1) / bb.h);
+    const a = zoomIn(areas[0]) >= zoomIn(areas[1]) ? areas[0] : areas[1];
+    const zoom = zoomIn(a);
+    // Centred in the window, then moved only as far as it takes to get into the area.
+    const x = Math.min(Math.max((W - bb.w * zoom) / 2, a.x1), a.x2 - bb.w * zoom);
+    const y = Math.min(Math.max((H - bb.h * zoom) / 2, a.y1), a.y2 - bb.h * zoom);
+    cy.viewport({ zoom, pan: { x: x - bb.x1 * zoom, y: y - bb.y1 * zoom } });
+    labelSize();
+  }
+}
+
 // Draw order: with equal z-index, insertion order wins. A label sits below its node, so
 // nodes go in bottom-up: lower ones are drawn first and never cover the label of a node
 // above them. Copied, so DATA is left alone; sorted once on load.
@@ -122,8 +152,7 @@ function show(name) {
   const [wMin, wMax] = extent(cy.edges().map((e) => Math.sqrt(e.data("weight"))));
   cy.edges().forEach((e) => e.data("widthOn", scale(Math.sqrt(e.data("weight")), wMin, wMax, 1.5, 18)));
 
-  cy.fit(40);
-  labelSize();
+  fitView();
   reset();
 }
 
