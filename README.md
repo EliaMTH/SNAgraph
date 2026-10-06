@@ -1,6 +1,6 @@
 # SNAgraph - Interactive concept graph
 
-Check out [this paper](https://doi.org/10.3390/urbansci10100576) to understand this work context.
+[Check [this paper](https://doi.org/10.3390/urbansci10100576) to understand the context]
 
 This is an interactive visualisation of three co-occurrence matrices over the same 48 concepts
 (shown as Figure 8, 10 and 11 in the paper). The figures can be seen by opening `index.html`, a static page, and `data.js` is produced by a Python script.
@@ -30,7 +30,7 @@ python3 -m venv .venv
 ```
 
 ## Reference
-If, for any reason, you want to cite this interactive visualization, cite the whole paper
+If, for any reason, you want to cite this interactive visualization, please cite the whole paper.
 ```bibtex
 @Article{MalvezziUS26,
 AUTHOR = {Malvezzi, Roberto},
